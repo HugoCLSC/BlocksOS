@@ -1,0 +1,7 @@
+# Comments are supported
+DEVICE_HOSTNAME=BlocksPrinter
+# All variables will be translated to lower case and made available to hooks
+device_user1=blocks
+dEvIcE_UsER1pASs=blocks
+# Variables set in the .cfg file can be overridden
+IMAGE_NAME=BlocksOS

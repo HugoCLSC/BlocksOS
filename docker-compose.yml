@@ -1,0 +1,17 @@
+
+services:
+    rpi_imagegen:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        image: rpi-imagegen:latest
+        container_name: rpi_imagegen 
+        privileged: true
+        stdin_open: true
+        tty: true
+        volumes:
+            - RPI-IMAGE-GENERATOR-VOLUME:/home/imagegen/
+        restart: unless-stopped
+
+volumes:
+  RPI-IMAGE-GENERATOR-VOLUME: 
