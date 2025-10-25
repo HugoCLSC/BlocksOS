@@ -4,17 +4,10 @@
 # X-Env-Layer-Desc: Raspberry Pi 5 specific device layer
 # X-Env-Layer-Version: 0.0.1
 # X-Env-Layer-Requires: device-base,
+#  rpi-debian-bookworm,
 #  rpi-boot-firmware,
-#  rpi-linux-2712,
-#  debian-trixie-arm64-multi,
-#  rpi-debian-trixie,
-#  rpi-misc-utils,
-#  rpi-misc-skel,
-#  rpi-user-credentials, 
-#  build-tools, 
-#  systemd-net-min,
-#  rpi-linux-v8,
-#  openssh-server
+#  build-tools
+# 
 # X-Env-Layer-Provides: device
 #
 # X-Env-VarPrefix: device
@@ -40,9 +33,9 @@
 ---
 mmdebstrap:
   packages:
-    - udev 
-    - raspi-firmware
-    - linux-image-rpi-v8
+    # - udev 
+    # - raspi-firmware
+    # - linux-image-rpi-v8
     - firmware-brcm80211
   #dpkgopts:
   #  - path-exclude=/usr/lib/raspi-firmware/*

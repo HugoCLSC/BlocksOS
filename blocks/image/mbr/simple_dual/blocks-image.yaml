@@ -17,13 +17,13 @@
 #
 # X-Env-Var-boot_part_size: 100%
 # X-Env-Var-boot_part_size-Desc: Boot partition size
-# X-Env-Var-boot_part_size-Required: y
+# X-Env-Var-boot_part_size-Required: n
 # X-Env-Var-boot_part_size-Valid: size
 # X-Env-Var-boot_part_size-Set: y
 #
 # X-Env-Var-root_part_size: 200%
 # X-Env-Var-root_part_size-Desc: Root partition size
-# X-Env-Var-root_part_size-Required: y
+# X-Env-Var-root_part_size-Required: n
 # X-Env-Var-root_part_size-Valid: size
 # X-Env-Var-root_part_size-Set: y
 #
