@@ -7,6 +7,9 @@
 #dtparam=i2s=on
 #dtparam=spi=on
 
+# Enable audio (loads snd_bcm2835)
+dtparam=audio=on
+
 # Additional overlays and parameters are documented
 # /boot/firmware/overlays/README
 
@@ -23,9 +26,6 @@ auto_initramfs=1
 dtoverlay=vc4-kms-v3d
 max_framebuffers=2
 
-framebuffer_depth=32
-framebuffer_ignore_alpha=1
-
 # Don't have the firmware create an initial video= setting in cmdline.txt.
 # Use the kernel's default instead.
 disable_fw_kms_setup=1
@@ -36,16 +36,8 @@ disable_overscan=1
 # Run as fast as firmware / board allows
 arm_boost=1
 
-# allow boot from a non USB-C PD (Power Delivery) compliant source
-#  
-usb_max_current_enable=1
-
-disable_splash=1
-boot_delay=0
+[pi5]
+BOOT_UART=1
 
 [cm5]
 dtoverlay=dwc2,dr_mode=host
-
-[all]
-BOOT_UART=1
-uart_2ndstage=1

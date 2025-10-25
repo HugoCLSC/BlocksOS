@@ -1,9 +1,0 @@
----
-name: customizations
-mmdebstrap:
-  packages:
-    - plymouth
-    - plymouth-themes
-    - ifupdown
-    - udisks2
-  install-recommends: true

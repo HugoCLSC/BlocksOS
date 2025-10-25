@@ -1,5 +1,7 @@
 FROM debian:bookworm AS base
 
+RUN apt-get update && apt-get install -y qemu-user-static
+
 RUN apt-get update && apt-get install --no-install-recommends -y \
       build-essential \
       curl \
@@ -13,9 +15,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 RUN curl -fsSL https://archive.raspberrypi.com/debian/raspberrypi.gpg.key \
   | gpg --dearmor > /usr/share/keyrings/raspberrypi-archive-keyring.gpg
 
-ARG RPIIG_GIT_SHA=e5766aa9b2f5a6a09b241c5553833aaa3d4ac4c3
-# ARG RPIIG_GIT_TAG=v2.0.0-rc.1
-RUN git clone --no-checkout https://github.com/raspberrypi/rpi-image-gen.git && cd rpi-image-gen && git checkout ${RPIIG_GIT_SHA}
+# ARG RPIIG_GIT_SHA=e5766aa9b2f5a6a09b241c5553833aaa3d4ac4c3
+ARG RPIIG_GIT_TAG=v2.0.0-rc.1
+RUN git clone --no-checkout https://github.com/raspberrypi/rpi-image-gen.git && cd rpi-image-gen && git checkout tags/${RPIIG_GIT_TAG}
 
 ARG TARGETARCH
 RUN echo "Building for architecture: ${TARGETARCH}"
@@ -29,7 +31,7 @@ RUN /bin/bash -c '\
       As of Apr 2025 rpi-image-gen install_deps exits if arm arch is not detected. \
       Override binfmt_misc_required flag and install known amd64 deps that are not \
       provided in the depends file" && \
-      sed -i "s|\"\${binfmt_misc_required}\" == \"1\"|! -z \"\"|g" rpi-image-gen/scripts/dependencies_check && \
+      sed -i "s|\"\${binfmt_misc_required}\" == \"1\"|! -z \"\"|g" rpi-image-gen/lib/dependencies.sh && \
       if cat /proc/filesystems | grep -q binfmt_misc; then \
         echo \"binfmt_misc is supported\" ; \
       else \
@@ -52,6 +54,7 @@ RUN /bin/bash -c '\
         kmod \
         bc \
         pigz \
+        python3-debian \
         arch-test && \
       rpi-image-gen/install_deps.sh ;; \
     *) echo "Architecture $ARCH is not arm64 or amd64. Skipping package installation." ;; \

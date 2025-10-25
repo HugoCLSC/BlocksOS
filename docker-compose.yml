@@ -1,17 +1,24 @@
-
 services:
+    binfmt-setup:
+        image: tonistiigi/binfmt
+        privileged: true
+        command: --install all
+        network_mode: bridge
+        restart: "no"
     rpi_imagegen:
-        build: 
+        build:
             context: .
             dockerfile: Dockerfile
         image: rpi-imagegen:latest
-        container_name: rpi_imagegen 
+        container_name: rpi_imagegen
         privileged: true
         stdin_open: true
         tty: true
+        depends_on:
+            - binfmt-setup
         volumes:
             - RPI-IMAGE-GENERATOR-VOLUME:/home/imagegen/
         restart: unless-stopped
 
 volumes:
-  RPI-IMAGE-GENERATOR-VOLUME: 
+    RPI-IMAGE-GENERATOR-VOLUME:
