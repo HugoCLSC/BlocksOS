@@ -33,6 +33,9 @@ After building the image we need to extract the generated image from inside the 
 
 ### Run container 
 
+Emulation work around on binfmt_misc [binfmt workaround](https://github.com/tonistiigi/binfmt)
+
+
 sudo docker compose up -d 
 
 sudo docker exec -it rpi-imagegen /bin/bash
