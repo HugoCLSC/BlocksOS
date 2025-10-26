@@ -1,0 +1,38 @@
+# METABEGIN
+# X-Env-Layer-Name: essential-base
+# X-Env-Layer-Desc: Example base layer that installs some useful packages
+#  for sw development.
+# X-Env-Layer-Version: 1.0.0
+# METAEND
+---
+mmdebstrap:
+  setup-hooks:
+    - echo "hello from example-essential-base"
+#  essential-hooks:
+    # Could perform chroot ops here prior to installing non-essential pkgs
+#  customize-hooks:
+    # Could perform ops here after the chroot is set up and packages installed
+#  cleanup-hooks:
+    # Could perform chroot ops here when cleaning up
+  packages:
+    - build-essential
+    - autoconf
+    - automake
+    - libtool
+    - flex
+    - bison
+    - udisks2
+    - xinit
+    - xserver
+    - x11-xserver-utils 
+    - xserver-xorg-input-evdev 
+    - libdbus-glib-1-dev
+    - udiskie 
+    - xdg-utils
+    - libx11-xcb-dev 
+    - libglu1-mesa-dev
+    - libxrender-dev 
+    - libxi-dev 
+    - libxkbcommon-dev 
+    - libxkbcommon-x11-dev 
+    - libxcb-cursor0

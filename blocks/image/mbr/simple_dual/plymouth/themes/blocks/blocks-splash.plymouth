@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Blocks Splash
+Description=Blocks Splash screen
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/blocks-splash/
+ScriptFile=/usr/share/plymouth/themes/blocks-splash/blocks-splash.script

@@ -23,5 +23,6 @@ layer:
   device: blocks-custompi5
   # device: rpi5
   image: blocks-image
-  base: rpi-debian-bookworm
+  # base: rpi-debian-bookworm
+  base: bookworm-minbase
 
