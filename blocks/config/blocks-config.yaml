@@ -1,5 +1,6 @@
 # include: 
-  # file: ~/BlocksOS/blocks/device/blocks-custompi5.yaml
+#   file: bookworm-minbase.yaml
+#   # file: ~/BlocksOS/blocks/device/blocks-custompi5.yaml
 
 device: 
   name: BlocksOS
@@ -16,12 +17,12 @@ image:
   layout: mbr/simple_dual
   boot_part_size: 200%
   root_part_size: 300%
-  rootfs_type: ext4
+  # rootfs_type: ext4
   compression: zstd
 
 layer: 
   base: bookworm-minbase
   device: blocks-custompi5
   image: blocks-image
-  custom: essential-base
+  custom: blocks-suite-layer
 

@@ -1,0 +1,41 @@
+# METABEGIN
+# X-Env-Layer-Name: custom-firmware-layer
+# X-Env-Layer-Category: firmware
+# X-Env-Layer-Desc: Installs udisks2, Klipper, Moonraker and configures
+# X-Env-Layer-Version: 1.0.0
+# METAEND
+---
+mmdebstrap:
+  packages:
+    - udisks2
+    - git
+    - python3
+    - python3-pip
+    - python3-venv
+
+  setup-hooks:
+    - echo "[custom-firmware-layer] Initializing custom firmware install!"
+  customize-hooks:
+    - |
+      echo "[custom-firmware-layer] Cloning Klipper..."
+      git clone --branch master https://github.com/BlocksTechnology/klipper.git /opt/klipper
+
+    - |
+      echo "[custom-firmware-layer] Cloning Moonraker..."
+      git clone --branch master https://github.com/Arksine/moonraker.git /opt/moonraker
+
+    - |
+      echo "[custom-firmware-layer] Installing Klipper dependencies..."
+      pip3 install --upgrade pip
+      pip3 install -r /opt/klipper/scripts/klippy-requirements.txt
+
+    - |
+      echo "[custom-firmware-layer] Installing Moonraker dependencies..."
+      pip3 install -r /opt/moonraker/moonraker-requirements.txt
+
+    - |
+      echo "[custom-firmware-layer] Enabling services..."
+      cp /opt/moonraker/moonraker.service /etc/systemd/system/moonraker.service
+      systemctl enable moonraker.service
+
+

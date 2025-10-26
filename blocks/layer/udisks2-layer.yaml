@@ -1,0 +1,32 @@
+# METABEGIN
+# X-Env-Layer-Name: udisks2-layer
+# X-Env-Layer-Category: firmware
+# X-Env-Layer-Desc: Installs udisks2 and configures it 
+# X-Env-Layer-Version: 1.0.0
+# METAEND
+---
+
+mmdebstrap:
+  packages:
+   - udisks2
+  setup-hooks:
+    - echo "[udisks2-layer] Setting up udisks2"
+  
+  customize-hooks:
+    - apt install udisks2 udiskie -y
+    - systemctl enable udisks2
+    - |
+      echo "[custom-firmware-layer] Adding polkit rule for udisks2..."
+      cat <<EOF > /etc/polkit-1/rules.d/99-udisks.rules
+      polkit.addRule(function(action, subject) {
+        if (action.id == "org.freedesktop.udisks2.filesystem-mount" &&
+            subject.isInGroup("plugdev")) {
+          return polkit.Result.YES;
+        }
+      });
+      EOF
+
+    - |
+      echo "[custom-firmware-layer] Creating symlink mount for USB"
+      mkdir -p $1/home/$IGconf_device_user1/printer_data/gcodes/USB
+      ln -sfn /media/$IGconf_device_user1/ $1/home/$IGconf_device_user1/printer_data/gcodes/USB
