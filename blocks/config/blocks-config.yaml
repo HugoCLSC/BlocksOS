@@ -1,5 +1,3 @@
-# include: 
-  # file: ~/BlocksOS/blocks/device/blocks-custompi5.yaml
 
 device: 
   name: BlocksOS
@@ -20,9 +18,7 @@ image:
   compression: zstd
 
 layer: 
-  device: blocks-custompi5
-  # device: rpi5
-  image: blocks-image
-  # base: rpi-debian-bookworm
   base: bookworm-minbase
-
+  device: blocks-custompi5
+  image: blocks-image
+  custom: essential-base
