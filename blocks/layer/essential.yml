@@ -14,18 +14,10 @@ mmdebstrap:
     # Could perform ops here after the chroot is set up and packages installed
 #  cleanup-hooks:
     # Could perform chroot ops here when cleaning up
-  mode: auto
-  variant: minbase
-  suite: bookworm
-  mirrors:
-    - deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
-    - deb http://deb.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
-    - deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
   packages:
     - build-essential
     - gcc
     - make
-    - libtool
     - pkg-config
     - wget
     - bash 
@@ -36,6 +28,7 @@ mmdebstrap:
     - flex
     - bison
     - xinit
+    - git 
     - xserver-xorg-input-libinput
     - xserver-xorg-legacy
     - x11-xserver-utils 

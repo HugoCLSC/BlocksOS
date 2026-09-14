@@ -1,4 +1,3 @@
-
 device: 
   name: BlocksOS
   hostname: BlocksPrinter
@@ -14,7 +13,7 @@ image:
   layout: mbr/simple_dual
   boot_part_size: 200%
   root_part_size: 300%
-  rootfs_type: ext4
+  # rootfs_type: ext4
   compression: zstd
 
 layer: 

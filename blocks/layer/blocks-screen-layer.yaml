@@ -1,0 +1,19 @@
+# METABEGIN
+# X-Env-Layer-Name: blocks-screen-layer
+# X-Env-Layer-Category: firmware
+# X-Env-Layer-Desc: Installs and configures BlocksScreen
+# X-Env-Layer-Version: 1.0.0
+# X-Env-Layer-Requires: python-alt-layer
+# METAEND
+---
+
+mmdebstrap:
+
+  setup-hooks:
+
+  customize-hooks:
+    - | 
+      echo "Creating Virtual Environment for BlocksScreen "
+  cleanup-hooks:
+
+  packages:
